@@ -1,8 +1,6 @@
-//const { default: Axios } = require("axios");
-
 function getInfo() {
     let anime = document.getElementById('animeTitle').value;
-    // axios.get('/api/AnimeInfo/', {
+    // axios.get('/api/AnimeInfo/GetAnimeInfo/', {
     //     params: {
     //         animeRef: anime,
     //     }
