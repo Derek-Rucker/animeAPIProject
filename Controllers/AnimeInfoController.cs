@@ -30,24 +30,25 @@ namespace AnimeAPI.Controllers
 
         // GET: api/AnimeInfos/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<AnimeInfo>> GetAnimeInfos(int id)
+        public async Task<ActionResult<AnimeInfo>> GetAnimeInfos(string id)
         {
             IJikan jikan = new Jikan();
             
-            Anime anime = await jikan.GetAnime(id);
-            if (anime == null)
+            AnimeInfo animeInfo = new AnimeInfo();
+            AnimeSearchResult animes = await jikan.SearchAnime(id);            
+            if (animes == null)
             {
-                return NotFound();
+                animeInfo.Title = "No Search Results Found!";                
             } else 
             {
-                return new AnimeInfo
-                {
-                    Title = anime.Title,
-                    ReleaseDate = anime.Aired.From.Value.ToString("MM/dd/yyyy"),
-                    NumberOfEpisodes = anime.Episodes.GetValueOrDefault(),                
-                    Summary = anime.Synopsis
-                };
+                AnimeSearchEntry firstFound = animes.Results.First();
+                animeInfo.Title = firstFound.Title;
+                animeInfo.ReleaseDate = firstFound.StartDate.Value.ToShortDateString();
+                animeInfo.NumberOfEpisodes = firstFound.Episodes.GetValueOrDefault();
+                animeInfo.Summary = firstFound.Description;                
             }
+            
+            return animeInfo;
         }
 
         // PUT: api/AnimeInfos/5
