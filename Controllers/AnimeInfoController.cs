@@ -36,9 +36,9 @@ namespace AnimeAPI.Controllers
             
             AnimeInfo animeInfo = new AnimeInfo();
             AnimeSearchResult animes = await jikan.SearchAnime(id);            
-            if (animes == null)
+            if (animes.Results.Count <= 0)
             {
-                animeInfo.Title = "No Search Results Found!";                
+                animeInfo.Title = "nsrf";                
             } else 
             {
                 AnimeSearchEntry firstFound = animes.Results.First();
@@ -47,7 +47,7 @@ namespace AnimeAPI.Controllers
                 animeInfo.NumberOfEpisodes = firstFound.Episodes.GetValueOrDefault();
                 animeInfo.Summary = firstFound.Description;                
             }
-            
+
             return animeInfo;
         }
 
