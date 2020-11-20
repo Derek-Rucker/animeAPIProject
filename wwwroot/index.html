@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Anime Info</title>
+    <script src="./scripts/scripts.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <input type="text" id="animeTitle">
+    <button id="btnGetInfo" onclick=getInfo()>Get Info!</button>
+    <div>
+        <label for="title">Title:</label>
+        <input type="text" name="title" id="responseTitle">
+    </div>
+    <div>
+        <label for="synopsis">Synopsis:</label>
+        <textarea name="synopsis" id="responseSyn"></textarea>
+    </div>
+    <div>
+        <label for="numEps">Number of Episodes:</label>
+        <input type="text" name="numEps" id="responseEps">
+    </div>
+    <div>
+        <label for="date">Air Date:</label>
+        <input type="text" name="date" id="responseDate">
+    </div>
+</body>
+</html>
